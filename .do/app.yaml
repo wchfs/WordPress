@@ -1,0 +1,8 @@
+name: wordpress
+services:
+  - dockerfile_path: Dockerfile
+    github:
+      branch: digital-ocean
+      deploy_on_push: true
+      repo: wchfs/WordPress
+    name: wordpress
