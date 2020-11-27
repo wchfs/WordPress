@@ -1,8 +1,24 @@
+databases:
+  - cluster_name: authentic-web
+    db_name: wordpress
+    db_user: authentic-web
+    engine: MYSQL
+    name: authentic-web
+    production: true
+    version: "8"
 name: wordpress
+region: ams
 services:
-  - dockerfile_path: Dockerfile
+  - envs:
+      - key: DATABASE_URL
+        scope: RUN_TIME
+        value: ${authentic-web.DATABASE_URL}
     github:
       branch: digital-ocean
-      deploy_on_push: true
       repo: wchfs/WordPress
+    http_port: 8080
+    instance_count: 1
+    instance_size_slug: basic-xxs
     name: wordpress
+    routes:
+      - path: /
